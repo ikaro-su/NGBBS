@@ -30,6 +30,7 @@ public class UserDAO extends DAO {
 //			user.setRole(rs.getString("role"));
 		}
 		
+		
 		st.close();
 		con.close();
 		return user;

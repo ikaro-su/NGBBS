@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Post;
-import model.User;
+//import model.User;
 
 
 public class PostDAO extends DAO {
@@ -79,18 +79,18 @@ public class PostDAO extends DAO {
 	
 	
 	// 投稿するときのDB登録
-	public void insertPost(User user) throws Exception {
-		Connection con = getConnection();
-		
-		PreparedStatement st = con.prepareStatement
-				("insert into post(user_name, title, content, comment) values (?,?,?,?)");
-		st.setInt(1,user.getUserId());
-		st.setString(2,user.getTitle());
-		st.setString(3,user.getContent());
-		st.setString(4, user.getComment());
-		ResultSet rs = st.executeQuery();
-		
-		st.close();
-		con.close();
-	}
+//	public void insertPost(User user) throws Exception {
+//		Connection con = getConnection();
+//		
+//		PreparedStatement st = con.prepareStatement
+//				("insert into post(user_name, title, content, comment) values (?,?,?,?)");
+//		st.setInt(1,user.getUserId());
+//		st.setString(2,user.getTitle());
+//		st.setString(3,user.getContent());
+//		st.setString(4, user.getComment());
+//		ResultSet rs = st.executeQuery();
+//		
+//		st.close();
+//		con.close();
+//	}
 }
