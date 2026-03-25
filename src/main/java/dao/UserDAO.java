@@ -21,11 +21,13 @@ public class UserDAO extends DAO {
 		
 		if (rs.next()) {
 			user = new User();
-			user.setUser_id(rs.getInt("user_id"));
-			user.setLogin_id(rs.getString("login_id"));
+			user.setUserId(rs.getInt("userId"));
 			user.setPassword(rs.getString("password"));
-			user.setUsername(rs.getString("user_name"));
-			user.setRole(rs.getString("role"));
+			
+//			user.setUser_id(rs.getInt("user_id"));
+//			user.setLogin_id(rs.getString("login_id"));
+//			user.setUsername(rs.getString("user_name"));
+//			user.setRole(rs.getString("role"));
 		}
 		
 		st.close();

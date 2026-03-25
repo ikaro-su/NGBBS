@@ -17,6 +17,8 @@ import model.User;
 
 
 public class PostDAO extends DAO {
+	
+	// 投稿を1件取得
 	public Post searchPost(String user_name, int post_id)
 	throws Exception {
 		Post post = null;
@@ -30,13 +32,15 @@ public class PostDAO extends DAO {
 		
 		while (rs.next()) {
 			post = new Post();
-			post.setPost_id(rs.getInt("post_id"));
-			post.setUser_name(rs.getString("user_name"));
-			post.setTitle(rs.getString("title"));
+			post.setId(rs.getInt("Id"));
+			post.setUserId("userId");
 			post.setContent(rs.getString("content"));
-			post.setLike_count(rs.getInt("like_count"));
-			post.setComment(rs.getString("comment"));
-			post.setCreated_at(rs.getTimestamp("created_at"));
+			post.setCreatedAt(rs.getTimestamp("createdAt"));			
+			
+//			post.setUser_name(rs.getString("user_name"));
+//			post.setTitle(rs.getString("title"));
+//			post.setLike_count(rs.getInt("like_count"));
+//			post.setComment(rs.getString("comment"));
 		}
 		
 		st.close();
@@ -44,38 +48,43 @@ public class PostDAO extends DAO {
 		return post;
 	}
 	
-	public Post searchAll() throws Exception {
+	
+	// 投稿の一覧を取得
+	public List<Post> searchAll() throws Exception {
 		List<Post> posts = new ArrayList<>();
 		
 		Connection con = getConnection();
 		
 		PreparedStatement st = con.prepareStatement("select * from post");
-		st.setInt(1, post_id);
 		ResultSet rs = st.executeQuery();
 		
 		while (rs.next()) {
-			post = new Post();
-			post.setPost_id(rs.getInt("post_id"));
-			post.setUser_name(rs.getString("user_name"));
-			post.setTitle(rs.getString("title"));
-			post.setContent(rs.getString("content"));
-			post.setLike_count(rs.getInt("like_count"));
-			post.setComment(rs.getString("comment"));
-			post.setCreated_at(rs.getTimestamp("created_at"));
+			Post p = new Post();
+			p.setId(rs.getInt("id"));
+			p.setUserId(rs.getString("userId"));
+			p.setContent(rs.getString("content"));
+			p.setCreatedAt(rs.getTimestamp("createdAt"));
+			posts.add(p);
+			
+//			p.setUser_name(rs.getString("user_name"));
+//			p.setTitle(rs.getString("title"));
+//			p.setLike_count(rs.getInt("like_count"));
+//			p.setComment(rs.getString("comment"));			
 		}
 		
 		st.close();
 		con.close();
-		return post;
+		return posts;
 	}
 	
 	
-	public void insert(User user) throws Exception {
+	// 投稿するときのDB登録
+	public void insertPost(User user) throws Exception {
 		Connection con = getConnection();
 		
 		PreparedStatement st = con.prepareStatement
 				("insert into post(user_name, title, content, comment) values (?,?,?,?)");
-		st.setString(1,user.getUser_name());
+		st.setInt(1,user.getUserId());
 		st.setString(2,user.getTitle());
 		st.setString(3,user.getContent());
 		st.setString(4, user.getComment());
