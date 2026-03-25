@@ -1,9 +1,3 @@
-// コメントって一つの投稿に対して複数付くはずだから、
-// post_idと一緒にコメントを保存するDBがいるよね
-
-// 投稿を一覧表示するページを作るのか、
-// 変わった？
-
 package dao;
 
 import java.sql.Connection;
@@ -35,7 +29,7 @@ public class PostDAO extends DAO {
 			post.setId(rs.getInt("Id"));
 			post.setUserId("userId");
 			post.setContent(rs.getString("content"));
-			post.setCreatedAt(rs.getTimestamp("createdAt"));			
+			post.setCreatedAt(rs.getTimestamp("createdAt"));
 			
 //			post.setUser_name(rs.getString("user_name"));
 //			post.setTitle(rs.getString("title"));
@@ -50,7 +44,7 @@ public class PostDAO extends DAO {
 	
 	
 	// 投稿の一覧を取得
-	public List<Post> searchAll() throws Exception {
+	public List<Post> searchAll(Post post) throws Exception {
 		List<Post> posts = new ArrayList<>();
 		
 		Connection con = getConnection();
@@ -79,18 +73,17 @@ public class PostDAO extends DAO {
 	
 	
 	// 投稿するときのDB登録
-//	public void insertPost(User user) throws Exception {
-//		Connection con = getConnection();
-//		
-//		PreparedStatement st = con.prepareStatement
-//				("insert into post(user_name, title, content, comment) values (?,?,?,?)");
-//		st.setInt(1,user.getUserId());
-//		st.setString(2,user.getTitle());
-//		st.setString(3,user.getContent());
-//		st.setString(4, user.getComment());
-//		ResultSet rs = st.executeQuery();
-//		
-//		st.close();
-//		con.close();
-//	}
+	public int insert(String userId, String content) throws Exception {
+		Connection con = getConnection();
+		
+		PreparedStatement st = con.prepareStatement
+				("insert into post(userId, content) values (?,?)");
+		st.setString(1,userId);
+		st.setString(2,content);
+		int line = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		return line;
+	}
 }
