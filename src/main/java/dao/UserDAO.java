@@ -14,7 +14,7 @@ public class UserDAO extends DAO {
 		Connection con = getConnection();
 		
 		PreparedStatement st = con.prepareStatement
-				("select * from users where login_id = ? and password = ?");
+				("select * from users where userId = ? and password = ?");
 		st.setInt(1, userId);
 		st.setString(2, password);
 		ResultSet rs = st.executeQuery();
