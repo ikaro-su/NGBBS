@@ -1,12 +1,17 @@
 package model;
+
 public class User implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	//ユーザーID
     private int userId;
+    //パスワード
     private String password;
+    
     public User() {
     	
     }
+    
     public User(int userId,String password) {
     	this.userId=userId;
     	this.password=password;
