@@ -4,17 +4,16 @@ import java.sql.Timestamp;
 
 public class Post implements java.io.Serializable{
 	
-	//投稿ID
-	private int id;
-	
-	//投稿者ID
-	private String userId;
-	
-	//投稿本文
-	private String content;
-	
-	//投稿日時
+	private int id;	
+	private String userId;	
+	private String content;	
 	private Timestamp createdAt;
+	
+//  今後使用予定
+//  private String userName;
+//  private String title;
+//  private int likeCount;
+//  private String comment;
 	
 	public int getId() {
 		return id;
@@ -30,8 +29,21 @@ public class Post implements java.io.Serializable{
 	
 	public Timestamp getCreatedAt() {
 		return createdAt;
+	}	
+/*
+	public String getUserName(){
+	    return userName;
 	}
-	
+	public String getTitle(){
+        return title;
+    } 
+    public int getLikeCount(){
+        return likeCount;
+    }    
+    public String getComment(){
+       return comment;
+    }   
+*/	
 	public void setId(int id) {
 		this.id=id;
 	}
@@ -46,6 +58,20 @@ public class Post implements java.io.Serializable{
 	
 	public void setCreatedAt(Timestamp createdAt) {
 		this.createdAt=createdAt;
-	}
+	}	
+/*
+    public void setUserName( String userName){
+        this.userName=userName;
+    }
+    public void setTitle( String title){
+        this.title=title;
+    }
+    public void setlikeCount( int likeCount){
+        this.likeCount=likecCont;
+    }
+    public void setComment( String comment){
+        this.comment=comment;
+    }
+ */
 	
 }
