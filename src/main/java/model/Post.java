@@ -43,7 +43,7 @@ public class Post implements java.io.Serializable{
     public String getComment(){
        return comment;
     }   
-*/	
+*/
 	public void setId(int id) {
 		this.id=id;
 	}
@@ -58,7 +58,7 @@ public class Post implements java.io.Serializable{
 	
 	public void setCreatedAt(Timestamp createdAt) {
 		this.createdAt=createdAt;
-	}	
+	}
 /*
     public void setUserName( String userName){
         this.userName=userName;
@@ -73,5 +73,5 @@ public class Post implements java.io.Serializable{
         this.comment=comment;
     }
  */
-	
+
 }

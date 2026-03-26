@@ -4,7 +4,7 @@ public class User implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	//ユーザーID
-    private int userId;
+    private String userId;
     //パスワード
     private String password;
     
@@ -12,19 +12,19 @@ public class User implements java.io.Serializable {
     	
     }
     
-    public User(int userId,String password) {
+    public User(String userId,String password) {
     	this.userId=userId;
     	this.password=password;
     }
     
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
     public String getPassword() {
         return password;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
     
