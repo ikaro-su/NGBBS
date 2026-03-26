@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import model.User;
 
 public class UserDAO extends DAO {
-	public User findUser(String userId, String password)
+	public User findUser(int userId, String password)
 	throws Exception {
 		User user = null;
 		
@@ -15,7 +15,7 @@ public class UserDAO extends DAO {
 		
 		PreparedStatement st = con.prepareStatement
 				("select * from users where login_id = ? and password = ?");
-		st.setString(1, userId);
+		st.setInt(1, userId);
 		st.setString(2, password);
 		ResultSet rs = st.executeQuery();
 		

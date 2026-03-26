@@ -73,12 +73,12 @@ public class PostDAO extends DAO {
 	
 	
 	// 投稿するときのDB登録
-	public int insert(String userId, String content) throws Exception {
+	public int insert(int userId, String content) throws Exception {
 		Connection con = getConnection();
 		
 		PreparedStatement st = con.prepareStatement
 				("insert into post(userId, content) values (?,?)");
-		st.setString(1,userId);
+		st.setInt(1,userId);
 		st.setString(2,content);
 		int line = st.executeUpdate();
 		
