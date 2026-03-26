@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 
+import org.apache.catalina.User;
+
 import dao.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -34,7 +36,7 @@ public class LoginServlet extends HttpServlet {
             int userId = Integer.parseInt(userIdStr);
 
             UserDAO userDAO = new UserDAO();
-            User user = userDAO.findUser(userId, password);
+            User user = (User) userDAO.findUser(userId, password);
 
             if (user != null) {
                 HttpSession session = request.getSession();
@@ -49,6 +51,9 @@ public class LoginServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "ユーザーIDは数値で入力してください。");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
-        }
+        } catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
     }
 }

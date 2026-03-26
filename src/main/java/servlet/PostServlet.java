@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 
+import org.apache.catalina.User;
+
 import dao.PostDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -40,7 +42,7 @@ public class PostServlet extends HttpServlet {
             return;
         }
 
-        int userId = user.getUserId();
+        String userId = user.getUsername();
 
         PostDAO postDAO = new PostDAO();
         postDAO.insert(userId, content);
