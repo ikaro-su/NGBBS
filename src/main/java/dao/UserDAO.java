@@ -21,7 +21,7 @@ public class UserDAO extends DAO {
 		
 		if (rs.next()) {
 			user = new User();
-			user.setUserId(rs.getInt("userId"));
+			user.setUserId(rs.getInt("user_id"));
 			user.setPassword(rs.getString("password"));
 		}
 		

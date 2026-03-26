@@ -2,8 +2,6 @@ package servlet;
 
 import java.io.IOException;
 
-import org.apache.catalina.User;
-
 import dao.PostDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.User;
 
 @WebServlet("/PostServlet")
 public class PostServlet extends HttpServlet {
@@ -42,10 +41,15 @@ public class PostServlet extends HttpServlet {
             return;
         }
 
-        String userId = user.getUsername();
+        int userId = user.getUserId();
 
         PostDAO postDAO = new PostDAO();
-        postDAO.insert(userId, content);
+        try {
+			postDAO.insert(userId, content);
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 
         response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
