@@ -41,7 +41,7 @@ public class PostServlet extends HttpServlet {
             return;
         }
 
-        int userId = user.getUserId();
+        String userId = user.getUserId();
 
         PostDAO postDAO = new PostDAO();
         try {

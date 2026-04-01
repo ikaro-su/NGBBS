@@ -21,10 +21,10 @@ public class LoginServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String userIdStr = request.getParameter("userId");
+        String userId = request.getParameter("userId");
         String password = request.getParameter("password");
 
-        if (userIdStr == null || userIdStr.isEmpty() ||
+        if (userId == null || userId.isEmpty() ||
             password == null || password.isEmpty()) {
             request.setAttribute("errorMessage", "ユーザーIDまたはパスワードが未入力です。");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
@@ -32,8 +32,6 @@ public class LoginServlet extends HttpServlet {
         }
 
         try {
-            int userId = Integer.parseInt(userIdStr);
-
             UserDAO userDAO = new UserDAO();
             User user = (User) userDAO.findUser(userId, password);
 
